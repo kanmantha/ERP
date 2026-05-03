@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.6.11723.189 insiders
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErpApp", "ErpApp.csproj", "{92CC8123-2300-AAD4-EAC7-2F9E7B6E5CC3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{92CC8123-2300-AAD4-EAC7-2F9E7B6E5CC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92CC8123-2300-AAD4-EAC7-2F9E7B6E5CC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92CC8123-2300-AAD4-EAC7-2F9E7B6E5CC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92CC8123-2300-AAD4-EAC7-2F9E7B6E5CC3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4769344F-646C-4747-BE1D-5A697F600B36}
+	EndGlobalSection
+EndGlobal

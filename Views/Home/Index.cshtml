@@ -1,8 +1,95 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@model ErpApp.Models.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <h1 class="display-4 fw-bold text-primary">ERP Dashboard</h1>
+            <p class="lead text-muted">Welcome back! Here's an overview of your application data.</p>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3 shadow-lg border-0 rounded-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <div class="card-body py-5 text-center">
+                    <h5 class="card-title text-uppercase fw-bold mb-3" style="letter-spacing: 2px;">Total Employees</h5>
+                    <p class="card-text display-1 fw-bold">@Model.TotalEmployees</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 rounded-4 h-100" style="background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px);">
+                <div class="card-header bg-transparent border-0 pt-4 pb-0">
+                    <h4 class="fw-bold text-dark"><i class="bi bi-people-fill me-2"></i>Recent Employees</h4>
+                </div>
+                <div class="card-body">
+                    @if (Model.RecentEmployees.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-light text-muted">
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Position</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var employee in Model.RecentEmployees)
+                                    {
+                                        <tr>
+                                            <td class="fw-bold text-secondary">#@employee.Id</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="bg-gradient-primary rounded-circle text-white d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px; background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);">
+                                                        @employee.FirstName.Substring(0, 1)@employee.LastName.Substring(0, 1)
+                                                    </div>
+                                                    <div>
+                                                        <div class="fw-bold text-dark">@employee.FirstName @employee.LastName</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-muted">@employee.Position</td>
+                                            <td><span class="badge rounded-pill bg-success px-3 py-2">Active</span></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info text-center py-4 rounded-3" role="alert">
+                            <h5 class="alert-heading fw-bold mb-2">No Employees Found</h5>
+                            <p class="mb-0">Get started by adding some employees to the system.</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        background-image: radial-gradient(circle at 10% 20%, rgba(216, 241, 230, 0.46) 0%, rgba(233, 226, 226, 0.28) 90%);
+        min-height: 100vh;
+    }
+    .table-hover tbody tr:hover {
+        background-color: rgba(79, 172, 254, 0.05);
+        transition: all 0.2s ease-in-out;
+    }
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+    }
+</style>

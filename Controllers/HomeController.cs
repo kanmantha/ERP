@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using ErpApp.Models;
+using ErpApp.Data;
 
 namespace ErpApp.Controllers;
 
@@ -9,13 +10,38 @@ namespace ErpApp.Controllers;
 /// </summary>
 public class HomeController : Controller
 {
+    private readonly ApplicationDbContext _context;
+
+    public HomeController(ApplicationDbContext context)
+    {
+        _context = context;
+    }
+
     /// <summary>
     /// Displays the default landing page of the application.
     /// </summary>
     /// <returns>An IActionResult containing the View for the Index page.</returns>
     public IActionResult Index()
     {
-        return View();
+        // Seed some data if empty
+        if (!_context.Employees.Any())
+        {
+            _context.Employees.AddRange(
+                new Employee { FirstName = "John", LastName = "Doe", Position = "Software Engineer" },
+                new Employee { FirstName = "Jane", LastName = "Smith", Position = "Product Manager" },
+                new Employee { FirstName = "Alice", LastName = "Johnson", Position = "UX Designer" },
+                new Employee { FirstName = "Bob", LastName = "Williams", Position = "HR Specialist" }
+            );
+            _context.SaveChanges();
+        }
+
+        var vm = new DashboardViewModel
+        {
+            TotalEmployees = _context.Employees.Count(),
+            RecentEmployees = _context.Employees.OrderByDescending(e => e.Id).Take(5).ToList()
+        };
+
+        return View(vm);
     }
 
     /// <summary>
