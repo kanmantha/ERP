@@ -8,7 +8,7 @@ set -euo pipefail
 
 # User-configurable via env vars, with sensible defaults
 RG="${ERP_RG:-ERP-RG}"
-LOCATION="${ERP_LOCATION:-centralus}"
+LOCATION="${ERP_LOCATION:-canadacentral}"
 ACR="${ERP_ACR:-erpacr}"
 APP_NAME="${ERP_APP_NAME:-erp-app}"
 PLAN="${ERP_PLAN:-ERP-Plan}"
@@ -17,6 +17,8 @@ SERVER_NAME="${ERP_MYSQL_SERVER:-erp}"
 DB_ADMIN="${ERP_DB_ADMIN:-ddeitjsjlu}"
 
 DB_PASSWORD="${ERP_DB_PASSWORD:-}"
+
+echo "Deployment config: RG=$RG, LOCATION=$LOCATION, ACR=$ACR, APP_NAME=$APP_NAME, PLAN=$PLAN, DB_NAME=$DB_NAME, SERVER_NAME=$SERVER_NAME"
 
 echo "Starting deployment with:"
 echo "RG=$RG, LOCATION=$LOCATION, ACR=$ACR, APP_NAME=$APP_NAME, PLAN=$PLAN, DB_NAME=$DB_NAME, SERVER_NAME=$SERVER_NAME"
